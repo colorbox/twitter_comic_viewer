@@ -1,0 +1,5 @@
+<% if session[:token] %>
+  logout
+<% else %>
+  <%= link_to 'twitter login', "/auth/twitter?callback_url=#{new_session_url}" %>
+<% end %>
