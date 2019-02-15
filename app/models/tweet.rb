@@ -1,3 +1,3 @@
 class Tweet < ApplicationRecord
-  belongs_to :comics
+  belongs_to :comic
 end

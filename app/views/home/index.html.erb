@@ -3,3 +3,8 @@
 <% else %>
   <%= link_to 'twitter login', "/auth/twitter?callback_url=#{new_session_url}" %>
 <% end %>
+
+<%= form_tag comics_path do |f| %>
+  <%= text_field_tag 'tweet_id'  %>
+  <%= submit_tag %>
+<% end %>
