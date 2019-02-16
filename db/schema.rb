@@ -24,9 +24,11 @@ ActiveRecord::Schema.define(version: 2019_02_15_055116) do
   end
 
   create_table "media", force: :cascade do |t|
+    t.bigint "tweet_id", null: false
     t.string "image_url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["tweet_id"], name: "index_media_on_tweet_id"
   end
 
   create_table "tweets", force: :cascade do |t|
