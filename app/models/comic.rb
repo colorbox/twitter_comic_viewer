@@ -3,7 +3,7 @@ class Comic < ApplicationRecord
   has_many :tweets, dependent: :destroy
 
   def ordered_tweets
-    tweets.order(id: :desc)
+    tweets.includes(:media).order(id: :desc).order('media.id')
   end
 
   def complete_pages(tweet_identifier)
