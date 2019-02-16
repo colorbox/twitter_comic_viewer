@@ -9,6 +9,12 @@ class ComicsController < ApplicationController
     redirect_to root_path
   end
 
+  def show
+    @user = User.find_by(access_token: session[:token])
+
+    @comic = @user.comics.find(params[:id])
+  end
+
   private
 
   def tweet_params

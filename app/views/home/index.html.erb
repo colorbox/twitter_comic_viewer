@@ -4,7 +4,15 @@
   <%= link_to 'twitter login', "/auth/twitter?callback_url=#{new_session_url}" %>
 <% end %>
 
-<%= form_tag comics_path do |f| %>
-  <%= text_field_tag 'tweet_id'  %>
-  <%= submit_tag %>
-<% end %>
+<p>
+  <%= form_tag comics_path do |f| %>
+    <%= text_field_tag 'tweet_id'  %>
+    <%= submit_tag %>
+  <% end %>
+</p>
+
+<p>
+  <% Comic.all.each do|comic| %>
+    <%= link_to comic.id, comic_path(comic.id) %>
+  <% end %>
+</p>

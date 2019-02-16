@@ -2,6 +2,10 @@ class Comic < ApplicationRecord
   belongs_to :user
   has_many :tweets, dependent: :destroy
 
+  def ordered_tweets
+    tweets.order(id: :desc)
+  end
+
   def complete_pages(tweet_identifier)
     add_page(tweet_identifier)
 
