@@ -10,7 +10,7 @@ class Comic < ApplicationRecord
     add_page(tweet_identifier)
 
     loop do
-      next unless binding
+      break unless binding
     end
   end
 
