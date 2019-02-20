@@ -39,6 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'twitter'
+gem 'bundler', '1.17.3'
 
 group :development, :test do
   gem 'byebug'
