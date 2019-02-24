@@ -1,3 +1,7 @@
 <% comic.ordered_tweets.each do |tweet| %>
   <%= render tweet %>
 <% end %>
+
+<a class="next" onclick="slideNext()">&#10095;</a>
+<a class="prev" onclick="slidePrev()">&#10094;</a>
+
