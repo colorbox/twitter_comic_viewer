@@ -2,7 +2,7 @@ class ComicsController < ApplicationController
   def create
     @user = User.find_by(access_token: session[:token])
 
-    comic = @user.comics.create
+    comic = @user.create_comic_cover(tweet_params[:tweet_id])
 
     comic.complete_pages(tweet_params[:tweet_id])
 

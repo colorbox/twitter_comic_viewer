@@ -1,5 +1,6 @@
 class Comic < ApplicationRecord
   belongs_to :user
+  belongs_to :author
   has_many :tweets, dependent: :destroy
 
   def ordered_tweets
@@ -19,7 +20,11 @@ class Comic < ApplicationRecord
   def add_page(tweet_identifier)
     tweet_entity = client.status(tweet_identifier)
 
-    tweet = tweets.create(tweet_identifier: tweet_identifier)
+    tweet = tweets.create(
+      tweet_identifier: tweet_identifier,
+      text: tweet_entity.text,
+      posted_at: tweet_entity.created_at
+    )
     tweet_entity.media.each do |medium|
       next unless medium.type == 'photo'
       tweet.media.create(image_url: medium.media_url_https)

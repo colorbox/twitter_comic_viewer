@@ -1,3 +1,6 @@
-<% tweet.media.each do |medium| %>
-  <%= render medium %>
-<% end %>
+
+<%= tweet.comic.author.name %>
+<%= tweet.comic.author.screen_name %>
+<%= tweet.text %>
+<%= tweet.posted_at %>
+<%= tweet.tweet_identifier %>

@@ -22,7 +22,7 @@ function showSlide() {
   }
 
   if (slideIndex >= comic.length) {slideIndex = comic.length - 1}
-  if (0 > slideIndex) {slideIndex = comic.length - 1}
+  if (0 > slideIndex) {slideIndex = 0}
   comic[slideIndex].style.display = "block";
 }
 

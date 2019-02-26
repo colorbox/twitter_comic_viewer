@@ -10,16 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_15_055116) do
+ActiveRecord::Schema.define(version: 2019_02_25_155601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "comics", force: :cascade do |t|
-    t.string "name", default: "", null: false
-    t.bigint "user_id", null: false
+  create_table "authors", force: :cascade do |t|
+    t.string "twitter_identifier", null: false
+    t.string "screen_name", null: false
+    t.string "name", null: false
+    t.string "avatar_url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comics", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "author_id", null: false
+    t.string "name", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_comics_on_author_id"
     t.index ["user_id"], name: "index_comics_on_user_id"
   end
 
@@ -34,6 +45,8 @@ ActiveRecord::Schema.define(version: 2019_02_15_055116) do
   create_table "tweets", force: :cascade do |t|
     t.bigint "comic_id", null: false
     t.string "tweet_identifier", null: false
+    t.string "text", default: "", null: false
+    t.datetime "posted_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["comic_id"], name: "index_tweets_on_comic_id"
@@ -45,6 +58,7 @@ ActiveRecord::Schema.define(version: 2019_02_15_055116) do
     t.string "name", null: false
     t.string "access_token", null: false
     t.string "access_token_secret", null: false
+    t.string "avatar_url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
