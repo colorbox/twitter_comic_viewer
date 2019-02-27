@@ -26,4 +26,9 @@ class SessionsController < ApplicationController
   rescue Twitter::Error::TooManyRequests
     redirect_to root_path
   end
+
+  def destroy
+    reset_session
+    redirect_to root_path
+  end
 end

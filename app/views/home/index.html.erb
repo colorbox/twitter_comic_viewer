@@ -1,18 +1,62 @@
-<% if session[:token] %>
-  logout
-<% else %>
-  <%= link_to 'twitter login', "/auth/twitter?callback_url=#{new_session_url}" %>
-<% end %>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <%= link_to 'ツイッターマンガまとめ(α)', root_path, class: 'navbar-brand' %>
+    </div>
 
-<p>
-  <%= form_tag comics_path do |f| %>
-    <%= text_field_tag 'tweet_id'  %>
-    <%= submit_tag %>
-  <% end %>
-</p>
+    <ul class="nav navbar-nav navbar-right">
+      <% if session[:token] %>
+        <li>
+          <%= link_to 'logout', session_path, method: :delete %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to 'twitter login', "/auth/twitter?callback_url=#{new_session_url}" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
 
-<p>
-  <% Comic.all.each do|comic| %>
-    <%= link_to comic.id, comic_path(comic.id) %>
+
+<main class="container" >
+
+  <div class="centering-block">
+
+  <p>
+    マンガ連ツイの最終ツイートのURLを貼り付けると自動でまとめます。
+  </p>
+  <p>
+    まとめた漫画は読みやすくなります。
+  </p>
+  <p>
+    今の所試験運用中です。
+  </p>
+  <p>
+    何かあれば <%= link_to 'こちら','https://twitter.com/color_box' %> までどうぞ
+  </p>
+
+
+  <% if session[:token] %>
+
+      <%= form_tag comics_path, class: 'form-comicalize' do |f| %>
+        <%= text_field_tag 'tweet_id', '', class: 'form-control form-control-lg mb-3', type: 'text', placeholder: 'https://twitter.com/XXXXXX/status/XXXXXXXXXXXXXXXXXXX'  %>
+        <%= submit_tag '読みやすくする',class: 'btn btn-primary' %>
+      <% end %>
+
+  <% else %>
+
+    <%= link_to 'ログインして漫画をまとめる', "/auth/twitter?callback_url=#{new_session_url}" %>
+
   <% end %>
-</p>
+
+
+  <p>
+    <% Comic.all.each do|comic| %>
+      <%= link_to comic.id, comic_path(comic.id) %>
+    <% end %>
+  </p>
+
+  </div>
+
+</main>
