@@ -1,4 +1,6 @@
 class ComicsController < ApplicationController
+  before_action :set_request_variant
+
   def create
     @user = User.find_by(access_token: session[:token])
 
@@ -13,6 +15,8 @@ class ComicsController < ApplicationController
     @user = User.find_by(access_token: session[:token])
 
     @comic = @user.comics.find(params[:id])
+
+    respond_to :html, :'html.smartphone'
   end
 
   private
